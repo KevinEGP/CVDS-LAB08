@@ -95,13 +95,13 @@ public class JDBCExample {
      * @param codigoPedido el código del pedido
      * @return 
      */
-    public static List<String> nombresProductosPedido(Connection con, int codigoPedido){
+    public static List<String> nombresProductosPedido(Connection con, int codigoPedido)throws SQLException{
         List<String> np=new LinkedList<>();
         
         
         //Crear prepared statement
-        String nombreProducto = "select nombre from ORD_DETALLES_PEDIDO join ORD_PRODUCTOS on producto_fk=codigo where pedido_fk=? ";
-        PreparedStatement  consultarNombres = con.prepareStatement(nombreProducto);
+        String nombreProducto = "select nombre from ORD_DETALLE_PEDIDO join ORD_PRODUCTOS on producto_fk=codigo where pedido_fk=? ";
+        try (PreparedStatement  consultarNombres = con.prepareStatement(nombreProducto)){
         //asignar parámetros
         consultarNombres.setInt(1,codigoPedido);
         //usar executeQuery
@@ -110,6 +110,9 @@ public class JDBCExample {
         while (rs.next()){
             String nombre = rs.getString("nombre");
             np.add(nombre);
+        }
+        } catch (SQLException e){
+
         }
         //Llenar la lista y retornarla
         
@@ -123,14 +126,42 @@ public class JDBCExample {
      * @param codigoPedido código del pedido cuyo total se calculará
      * @return el costo total del pedido (suma de: cantidades*precios)
      */
-    public static int valorTotalPedido(Connection con, int codigoPedido){
+     public static int valorTotalPedido(Connection con, int codigoPedido){
+
+        int total = 0;
+
         
+
         //Crear prepared statement
+
+        String valorPedido = "select SUM(precio*cantidad) as Total from ORD_DETALLE_PEDIDO join ORD_PRODUCTOS on producto_fk=codigo where pedido_fk=?";
+
+        try (PreparedStatement  consultarValorPedido = con.prepareStatement(valorPedido)){
+
         //asignar parámetros
+
+        consultarValorPedido.setInt(1,codigoPedido);
+
         //usar executeQuery
-        //Sacar resultado del ResultSet
+
+        ResultSet rs=consultarValorPedido.executeQuery();
+
+        //Sacar resultados del ResultSet
+        rs.next();
+        total = rs.getInt("Total");
+
+
+
+        } catch (SQLException e){
+
+
+
+        }
+
         
-        return 0;
+
+        return total;
+
     }
     
 
