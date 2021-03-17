@@ -57,8 +57,8 @@ public class JDBCExample {
             System.out.println("-----------------------");
             
             
-            int suCodigoECI=20134423;
-            registrarNuevoProducto(con, suCodigoECI, "SU NOMBRE", 99999999);            
+            int suCodigoECI=214601300;
+            registrarNuevoProducto(con, suCodigoECI, "PASTA", 40000);            
             con.commit();
                         
             
@@ -80,12 +80,26 @@ public class JDBCExample {
      * @throws SQLException 
      */
     public static void registrarNuevoProducto(Connection con, int codigo, String nombre,int precio) throws SQLException{
-        //Crear preparedStatement
-        //Asignar parámetros
-        //usar 'execute'
+        //Crear prepared statement
 
-        
+        String insertarProducto = "INSERT INTO ORD_PRODUCTOS(codigo,nombre,precio) VALUES(?,?,?)";
+
+        try (PreparedStatement  insertarP = con.prepareStatement(insertarProducto)){
+
+        //asignar parámetros
+
+        insertarP.setInt(1,codigo);
+        insertarP.setString(2,nombre);
+        insertarP.setInt(3,precio);
+
+        //usar executeQuery
+
+        insertarP.executeUpdate();
         con.commit();
+        } catch (SQLException e){
+
+        }        
+        
         
     }
     
@@ -100,7 +114,7 @@ public class JDBCExample {
         
         
         //Crear prepared statement
-        String nombreProducto = "select nombre from ORD_DETALLE_PEDIDO join ORD_PRODUCTOS on producto_fk=codigo where pedido_fk=? ";
+        String nombreProducto = "select nombre from ORD_DETALLE_PEDIDO join ORD_PRODUCTOS on producto_fk=codigo where pedido_fk=?";
         try (PreparedStatement  consultarNombres = con.prepareStatement(nombreProducto)){
         //asignar parámetros
         consultarNombres.setInt(1,codigoPedido);
