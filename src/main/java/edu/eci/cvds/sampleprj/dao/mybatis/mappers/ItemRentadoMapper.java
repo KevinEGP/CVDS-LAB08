@@ -1,6 +1,6 @@
 package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
 
-
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -8,11 +8,10 @@ import edu.eci.cvds.samples.entities.ItemRentado;
 
 public interface ItemRentadoMapper {
     
+    public List<ItemRentado> consultarItemsRentados();
     
-    public List<ItemRentado> getItemsRentados();
+    public ItemRentado consultarItemRentado(int id);
     
-    public ItemRentado getItemRentado(int id);
-    
-    public void addItemRentado(String des);
+    public void insertarItemRentado(ItemRentado ir);
 
 }
