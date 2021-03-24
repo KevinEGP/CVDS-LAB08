@@ -20,6 +20,9 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Inject
    private ItemDAO itemDAO;
+   private ClienteDAO clienteDAO;
+   
+
 
    @Override
    public int valorMultaRetrasoxDia(int itemId) {

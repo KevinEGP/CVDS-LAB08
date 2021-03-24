@@ -18,7 +18,7 @@ public class MyBATISItemRentadoDAO implements ItemRentadoDAO{
   @Override
   public void save(ItemRentado ir) throws PersistenceException{
   try{
-      itemRentado.insertarItemRentado(ir);
+      itemRentadoMapper.insertarItemRentado(ir);
   }
   catch(org.apache.ibatis.exceptions.PersistenceException e){
       throw new PersistenceException("Error al registrar el item rentado"+ir.toString(),e);
@@ -29,7 +29,7 @@ public class MyBATISItemRentadoDAO implements ItemRentadoDAO{
   @Override
   public ItemRentado load(int id) throws PersistenceException {
   try{
-      return itemRentadoMapper.consultaritemRentado(id);
+      return itemRentadoMapper.consultarItemRentado(id);
   }
   catch(org.apache.ibatis.exceptions.PersistenceException e){
       throw new PersistenceException("Error al consultar el item rentado"+id,e);

@@ -18,7 +18,7 @@ public class MyBATISClienteDAO implements ClienteDAO{
   @Override
   public void save(Cliente cl) throws PersistenceException{
   try{
-      clienteMapper.insertarCiente(cl);
+      clienteMapper.insertarCliente(cl);
   }
   catch(org.apache.ibatis.exceptions.PersistenceException e){
       throw new PersistenceException("Error al registrar el cliente "+cl.toString(),e);
