@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
+import edu.eci.cvds.sampleprj.dao.TipoItemDAO;
+import edu.eci.cvds.sampleprj.dao.ItemRentadoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.samples.entities.Cliente;
@@ -18,20 +20,27 @@ import java.util.List;
 @Singleton
 public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
-   @Inject
-   private ItemDAO itemDAO;
-   private ClienteDAO clienteDAO;
-   
+   @Inject private ItemDAO itemDAO;
+   @Inject private ClienteDAO clienteDAO;
+   @Inject private TipoItemDAO tipoItemDAO;
+   @Inject private ItemRentadoDAO itemRentadoDAO;
+
+    public ServiciosAlquilerImpl() {
+    }
 
 
-   @Override
+    @Override
    public int valorMultaRetrasoxDia(int itemId) {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
    public Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+       try {
+           return clienteDAO.load(docu);
+       } catch (PersistenceException ex) {
+           throw new UnsupportedOperationException("Not supported yet.");
+       }
    }
 
    @Override
@@ -41,7 +50,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+       try {
+           return clienteDAO.loadAll();
+       } catch (PersistenceException ex) {
+           throw new UnsupportedOperationException("Not supported yet.");
+       }
    }
 
    @Override
@@ -65,7 +78,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+       try {
+           return tipoItemDAO.load(id);
+       } catch (PersistenceException ex) {
+           throw new UnsupportedOperationException("Not supported yet.");
+       }
    }
 
    @Override
@@ -80,7 +97,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+       try {
+           clienteDAO.save(c);
+       } catch (PersistenceException ex) {
+           throw new UnsupportedOperationException("Not supported yet.");
+       }
    }
 
    @Override
@@ -94,7 +115,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
    @Override
    public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+           itemDAO.save(i);
+       } catch (PersistenceException ex) {
+           throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       }
    }
 
    @Override

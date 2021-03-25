@@ -10,7 +10,7 @@ public interface ClienteMapper {
     
     public List<Cliente> consultarClientes();
     
-    public Cliente consultarCliente(int id);
+    public Cliente consultarCliente(long id);
 
     public void insertarCliente(Cliente cl); 
     
