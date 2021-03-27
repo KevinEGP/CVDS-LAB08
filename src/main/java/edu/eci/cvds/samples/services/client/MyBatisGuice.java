@@ -17,7 +17,7 @@ public class MyBatisGuice {
         //Cliente cl =  new Cliente("Name", 215298803, "30000", "Cl 0 #0-0", "mail3@email.co");
         //services.registrarCliente(cl);
         //System.out.println(services.consultarClientes());
-        //System.out.println(services.consultarCliente(215298801));
-        System.out.println(services.consultarItemsCliente(5));
+        System.out.println(services.consultarCliente(215298801));
+        //System.out.println(services.consultarItemsCliente(5));
     }
 }

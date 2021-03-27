@@ -7,17 +7,9 @@
 </h:head>
 <h:body style="background-color:#C6C6C6">
 
-    <h:form id="guess_form">
-        <h2>Número</h2>
-        <p:outputLabel value="#{Game.getNumero()}"/><br/>
-        <h2>Intentos</h2>
-        <p:outputLabel value="#{Game.getIntentos()}"/><br/>
-        <h2>Premio actual</h2>
-        <p:outputLabel value="#{Game.getPremio()}"/><br/>
-        <h2>Ingrese un número</h2>
-        <p:inputText id="numero" binding="#{input}" value="0"/><br/>
+    <h:form id="app_form">
+        <h2>Alquiler</h2>
     </h:form>
-    <p:commandButton value="Enviar" update="guess_form" actionListener="#{Game.guess(input.value)}"/>
-    <p:commandButton value="Reiniciar" update="guess_form" actionListener="#{Game.restart()}"/>
+    <p:commandButton value="Enviar" update="app_form" actionListener="#{app.guess(input.value)}"/>
 </h:body>
 </xhtml>

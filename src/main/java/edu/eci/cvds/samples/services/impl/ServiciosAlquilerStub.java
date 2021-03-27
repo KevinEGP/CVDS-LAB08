@@ -7,6 +7,8 @@ import edu.eci.cvds.samples.entities.TipoItem;
 import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.cvds.samples.services.ServiciosAlquiler;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -17,6 +19,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+@ManagedBean(name = "app")
+@SessionScoped
 public class ServiciosAlquilerStub implements ServiciosAlquiler {
 
    private static final int MULTA_DIARIA=5000;
