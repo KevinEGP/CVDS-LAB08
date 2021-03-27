@@ -5,6 +5,8 @@
   
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper">
 
+    <!--consultarItemRentado-->
+
     <resultMap type='ItemRentado' id='ItemRentadoResult'>
         <id property='id' column='idRentado'/>
         <result property='fechainiciorenta' column='fechainiciorenta'/>
@@ -12,4 +14,25 @@
         <association property='item' javaType="edu.eci.cvds.samples.entities.Item" resultMap='edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult'></association>
     </resultMap>
 
+    <select parameterType="map" id="consultarItemsRentados" resultMap="ItemRentadoResult">
+
+        SELECT
+            ir.id as idRentado,
+            ir.fechainiciorenta ,
+            ir.fechafinrenta ,
+            i.id as idItem,
+            i.nombre as nombreItem,
+            i.descripcion as descripcionItem ,
+            i.fechalanzamiento ,
+            i.tarifaxdia ,
+            i.formatorenta ,
+            i.genero ,
+            ti.id as idTipo ,
+            ti.descripcion as descripcionTipo
+        FROM
+            VI_ITEMRENTADO as ir left join VI_ITEMS as i on ir.ITEMS_id=i.id
+            left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+        WHERE
+            CLIENTES_documento = #{idc};
+    </select>
 </mapper>

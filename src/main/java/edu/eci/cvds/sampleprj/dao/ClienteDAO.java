@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClienteDAO {
 
-   public void save(Cliente it) throws PersistenceException;
+   public void save(Cliente cl) throws PersistenceException;
 
    public Cliente load(long id) throws PersistenceException;
 

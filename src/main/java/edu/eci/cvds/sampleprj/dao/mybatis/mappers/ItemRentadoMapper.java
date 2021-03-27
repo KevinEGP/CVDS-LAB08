@@ -8,7 +8,7 @@ import edu.eci.cvds.samples.entities.ItemRentado;
 
 public interface ItemRentadoMapper {
     
-    public List<ItemRentado> consultarItemsRentados();
+    public List<ItemRentado> consultarItemsRentados(@Param("idc") long docu);
     
     public ItemRentado consultarItemRentado(int id);
     

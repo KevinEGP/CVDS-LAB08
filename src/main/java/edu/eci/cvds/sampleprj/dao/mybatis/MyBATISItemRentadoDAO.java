@@ -9,6 +9,7 @@ import edu.eci.cvds.samples.entities.ItemRentado;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.TipoItem;
 import java.sql.SQLException;
+import java.util.List;
 
 public class MyBATISItemRentadoDAO implements ItemRentadoDAO{
 
@@ -37,5 +38,18 @@ public class MyBATISItemRentadoDAO implements ItemRentadoDAO{
 
 
   }
+
+  @Override
+  public List<ItemRentado> loadAll(long docu) throws PersistenceException {
+    try{
+      return itemRentadoMapper.consultarItemsRentados(docu);
+    }
+    catch(org.apache.ibatis.exceptions.PersistenceException e){
+      throw new PersistenceException("Error al consultar el item rentado"+docu,e);
+    }
+
+
+  }
+
 
   }

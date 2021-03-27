@@ -6,11 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MyBATIS-Guice-DAO-VideorentalServicesLayer" />
+        <module name="app" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="App" target="1.8" />
+      <module name="app" target="1.8" />
+      <module name="java-web-project" target="1.8" />
       <module name="MyBATIS-Guice-DAO-VideorentalServicesLayer" target="1.8" />
+      <module name="service" target="1.8" />
+      <module name="webapp" target="1.8" />
+      <module name="WebApp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

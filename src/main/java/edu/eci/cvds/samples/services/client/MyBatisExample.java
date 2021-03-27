@@ -21,6 +21,8 @@ package edu.eci.cvds.samples.services.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+
+import edu.eci.cvds.samples.entities.Cliente;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -66,7 +68,8 @@ public class MyBatisExample {
         //Crear el mapper y usarlo:
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
 
-        System.out.println(cm.consultarClientes());
+        //System.out.println(cm.consultarClientes());
+        cm.insertarCliente(new Cliente("Name", 215298801, "30000", "Calle", "mail@email.co"));
         
         sqlss.commit();
         

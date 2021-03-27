@@ -10,9 +10,9 @@ public interface ClienteMapper {
     
     public List<Cliente> consultarClientes();
     
-    public Cliente consultarCliente(long id);
+    public Cliente consultarCliente(@Param("idc") long id);
 
-    public void insertarCliente(Cliente cl); 
+    public void insertarCliente(Cliente cl);
     
     /**
      * Registrar un nuevo item rentado asociado al cliente identificado
